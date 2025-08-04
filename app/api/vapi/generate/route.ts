@@ -39,7 +39,12 @@ export async function POST(request: Request) {
 
     await db.collection("interviews").add(interview);
 
-    return Response.json({ success: true }, { status: 200 });
+    // return Response.json({ success: true }, { status: 200 });
+    return Response.json({
+  toolResponse: {
+    feedback: `Generated ${amount} ${type} interview questions for a ${level} ${role} role using ${techstack}.`,
+  }
+}, { status: 200 });
   } catch (error) {
     console.error("Error:", error);
     return Response.json({ success: false, error: error }, { status: 500 });
